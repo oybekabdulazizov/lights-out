@@ -76,11 +76,9 @@ class Board extends Component {
             }
         }
 
-        if (falseValCounter === (nrows * ncols)) {
-            this.setState(currState => ({
-                hasWon: true
-            }))
-        }
+        this.setState(currState => ({
+            hasWon: (falseValCounter === (nrows * ncols) ? true : false)
+        }));
     }
 
     printBoard = () => {
@@ -91,11 +89,22 @@ class Board extends Component {
 
     render() {
         return (
-            <table className="Board">
-                <tbody>
-                    {this.createTblBoard()}
-                </tbody>
-            </table>
+            <>
+            {
+            this.state.hasWon 
+                ? <div className="Board">
+                    <h1>You Win!</h1>
+                </div>
+                : <div>
+                    <h1>Lights Out</h1>
+                    <table className="Board">
+                        <tbody>
+                            {this.createTblBoard()}
+                        </tbody>
+                    </table>
+                </div>
+            }
+            </>
         )
     }
 }
