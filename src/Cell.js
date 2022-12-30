@@ -14,7 +14,7 @@ class Cell extends Component {
     render() {
         let classes = "Cell" + (this.props.isLit ? " Cell-lit" : " Cell-unlit");
         return (
-            <td className={classes} onClick={this.handleClick}>I am a Cell component 😃</td>
+            <td className={classes} onClick={this.handleClick}></td>
         )
     }
 }
