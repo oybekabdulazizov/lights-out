@@ -8,7 +8,7 @@ class Cell extends Component {
     }
 
     handleClick(e) {
-        console.log("handling a simple click for now...");
+        this.props.flipCellsAroundMe(this.props.val);
     }
 
     render() {
