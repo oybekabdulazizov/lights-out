@@ -90,13 +90,16 @@ class Board extends Component {
     render() {
         return (
             <>
-            {
-            this.state.hasWon 
-                ? <div className="Board">
-                    <h1>You Win!</h1>
+            {this.state.hasWon 
+                ? <div className="Board-winner">
+                    <div className="winner">
+                        <span className="neon-orange">YOU</span>
+                        <span className="neon-blue">WIN!</span>
+                    </div>
                 </div>
                 : <div>
-                    <h1>Lights Out</h1>
+                    <div className="neon-orange">Lights</div>
+                    <div className="neon-blue">Out</div>
                     <table className="Board">
                         <tbody>
                             {this.createTblBoard()}
