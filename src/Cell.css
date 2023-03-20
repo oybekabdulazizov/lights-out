@@ -1,15 +1,15 @@
 .Cell {
-    width: 90px;
-    height: 90px;
-    border-radius: 2px;
+  width: 90px;
+  height: 90px;
+  border-radius: 2px;
 }
 
 .Cell-lit {
-    background-color: #00bcd4;
-    transition: background-color 0.5s ease;
+  background-color: #00bcd4;
+  transition: background-color 0.5s ease;
 }
 
 .Cell-unlit {
-    background-color: #263238;
-    transition: background-color 0.5s ease;
+  background-color: #263238;
+  transition: background-color 0.5s ease;
 }
