@@ -1,50 +1,43 @@
-import React, { Component } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import './Board.css';
 
 import Cell from './Cell';
 
-class Board extends Component {
-  static defaultProps = {
+export default function Board() {
+  const boardProps = {
     nrows: 5,
     ncols: 6,
     chanceLightStarsOn: 0.3,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasWon: false,
-      board: this.createBoard(),
-    };
-    this.flipCellsAround = this.flipCellsAround.bind(this);
-  }
-
-  createBoard() {
+  const createBoard = () => {
     const newBoard = [];
-    for (let y = 0; y < this.props.nrows; y++) {
+    for (let y = 0; y < boardProps.nrows; y++) {
       let row = [];
-      for (let x = 0; x < this.props.ncols; x++) {
-        row.push(Math.random() < this.props.chanceLightStarsOn);
+      for (let x = 0; x < boardProps.ncols; x++) {
+        row.push(Math.random() < boardProps.chanceLightStarsOn);
       }
       newBoard.push(row);
     }
 
     return newBoard;
-  }
+  };
 
-  createTblBoard() {
+  const [state, setState] = useState({ hasWon: false, board: createBoard() });
+
+  function createTblBoard() {
     let tblBoard = [];
-    for (let y = 0; y < this.props.nrows; y++) {
+    for (let y = 0; y < boardProps.nrows; y++) {
       let row = [];
-      for (let x = 0; x < this.props.ncols; x++) {
+      for (let x = 0; x < boardProps.ncols; x++) {
         let coord = `${y}-${x}`;
         row.push(
           <Cell
             key={coord}
             val={coord}
-            isLit={this.state.board[y][x]}
-            flipCellsAroundMe={this.flipCellsAround}
+            isLit={state.board[y][x]}
+            flipCellsAroundMe={flipCellsAround}
           />
         );
       }
@@ -53,9 +46,9 @@ class Board extends Component {
     return tblBoard;
   }
 
-  flipCellsAround(coord) {
-    let { nrows, ncols } = this.props;
-    let board = this.state.board;
+  function flipCellsAround(coord) {
+    let { nrows, ncols } = boardProps;
+    let board = state.board;
 
     let [y, x] = coord.split('-');
     y = parseInt(y);
@@ -72,7 +65,8 @@ class Board extends Component {
     flipCell(y, x - 1);
     flipCell(y, x + 1);
     flipCell(y + 1, x);
-    this.setState((currState) => ({
+    setState((prevState) => ({
+      ...prevState,
       board,
     }));
 
@@ -85,39 +79,30 @@ class Board extends Component {
       }
     }
 
-    this.setState((currState) => ({
+    setState((prevState) => ({
+      ...prevState,
       hasWon: falseValCounter === nrows * ncols ? true : false,
     }));
   }
 
-  printBoard = () => {
-    for (let row of this.state.board) {
-      console.log(row);
-    }
-  };
-
-  render() {
-    return (
-      <>
-        {this.state.hasWon ? (
-          <div className='Board-winner'>
-            <div className='winner'>
-              <span className='neon-orange'>YOU</span>
-              <span className='neon-blue'>WIN!</span>
-            </div>
+  return (
+    <Fragment>
+      {state.hasWon ? (
+        <div className='Board-winner'>
+          <div className='winner'>
+            <span className='neon-orange'>YOU</span>
+            <span className='neon-blue'>WIN!</span>
           </div>
-        ) : (
-          <div>
-            <div className='neon-orange'>Lights</div>
-            <div className='neon-blue'>Out</div>
-            <table className='Board'>
-              <tbody>{this.createTblBoard()}</tbody>
-            </table>
-          </div>
-        )}
-      </>
-    );
-  }
+        </div>
+      ) : (
+        <div>
+          <div className='neon-orange'>Lights</div>
+          <div className='neon-blue'>Out</div>
+          <table className='Board'>
+            <tbody>{createTblBoard()}</tbody>
+          </table>
+        </div>
+      )}
+    </Fragment>
+  );
 }
-
-export default Board;

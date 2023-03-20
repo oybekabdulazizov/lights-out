@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Cell.css';
 
-class Cell extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+export default function Cell(props) {
+  function handleClick(e) {
+    props.flipCellsAroundMe(props.val);
   }
 
-  handleClick(e) {
-    this.props.flipCellsAroundMe(this.props.val);
-  }
-
-  render() {
-    let classes = 'Cell' + (this.props.isLit ? ' Cell-lit' : ' Cell-unlit');
-    return <td className={classes} onClick={this.handleClick}></td>;
-  }
+  let classes = 'Cell' + (props.isLit ? ' Cell-lit' : ' Cell-unlit');
+  return <td className={classes} onClick={handleClick}></td>;
 }
-
-export default Cell;
