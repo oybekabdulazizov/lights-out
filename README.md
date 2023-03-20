@@ -6,7 +6,7 @@
 
 This is my version of Lights Out game. To be completely honest, I would not say I have created this project by myself from scratch. Of couse, I used some help and resources from the internet 🥲
 
-I hope you are aware of the game rules, that is, you need to switch all the lights off so as to win the game. This version may not be quite solvable and winnable yet, however, there is a little cheat trick you can follow in order to fake win game and see the win message. 
+I hope you are aware of the game rules, that is, you need to switch all the lights off in order to win the game. This version may not be quite solvable and winnable yet, however, there is a little cheat trick you can follow in order to fake "win" the game and see the win message. 
 No pressure though 😃
 
 If you really want to win the game, go ahead and give it a try. 
@@ -32,3 +32,8 @@ In case you are curious about the trick, follow the below steps.
 
 
 Like I said earlier, no pressure 😄
+
+
+## Contact 
+
+Email me to oybek.tulqinovich@gmail.com 
